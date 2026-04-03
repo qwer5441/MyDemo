@@ -22,6 +22,7 @@ public class BeginPanel : BasePanel
         Camera.main.GetComponent<CameraAnimator>().TurnLeft(() =>//传入左转后要做的事情
         {
             print("显示选色面板");
+            UIManager.Instance.ShowPanel<ChooseHeroPanel>();
         });
 
         UIManager.Instance.HidePanel<BeginPanel>();    
