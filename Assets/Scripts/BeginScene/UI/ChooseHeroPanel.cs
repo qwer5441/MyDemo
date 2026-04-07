@@ -67,10 +67,13 @@ public class ChooseHeroPanel :BasePanel
                 GameDataMgr.Instance.SavePlayerData();
                 UpdateLockBtn();
                 //购买成功提示
+                UIManager.Instance.ShowPanel<TipPanel>().ChangeInfo("购买成功");
             }
             else
             {
                 //显示金钱不足
+                UIManager.Instance.ShowPanel<TipPanel>().ChangeInfo("金钱不足");
+
             }
         });
 
@@ -80,6 +83,7 @@ public class ChooseHeroPanel :BasePanel
             GameDataMgr.Instance.nowSelRole=nowRoleData;
             //隐藏自己 显示选择场景面板
             UIManager.Instance.HidePanel<ChooseHeroPanel>();
+            UIManager.Instance.ShowPanel<ChooseScenePanel>();
         });
 
         btnBack.onClick.AddListener(() =>
