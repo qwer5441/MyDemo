@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -42,6 +43,7 @@ public class ChooseHeroPanel :BasePanel
                 nowIndex = GameDataMgr.Instance.roleInfoList.Count - 1;
             }
             ChangeHero();
+
         });
 
         btnRight.onClick.AddListener(() =>
@@ -114,6 +116,7 @@ public class ChooseHeroPanel :BasePanel
         }
         //根据索引值取出一条数据
         nowRoleData=GameDataMgr.Instance.roleInfoList[nowIndex];
+        txtName.text= nowRoleData.tips;
         //实例化模型 并记录下来 用于下次切换时删除
         heroObj = Instantiate(Resources.Load<GameObject>(nowRoleData.res), heroPos.position, heroPos.rotation);
 
