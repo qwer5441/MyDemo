@@ -120,6 +120,8 @@ public class ChooseHeroPanel :BasePanel
         //实例化模型 并记录下来 用于下次切换时删除
         heroObj = Instantiate(Resources.Load<GameObject>(nowRoleData.res), heroPos.position, heroPos.rotation);
 
+        Destroy(heroObj.GetComponent<PlayerObject>());
+
         //根据解锁相关数据来决定是否显示解锁按钮
         UpdateLockBtn();
     }

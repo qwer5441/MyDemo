@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ChooseScenePanel : BasePanel
@@ -21,8 +22,9 @@ public class ChooseScenePanel : BasePanel
     {
         btnLeft.onClick.AddListener(() =>
         {
+            Debug.Log("点击左键");
             --nowIndex;
-            if (nowIndex < 0)
+            if (nowIndex <0)
             {
                 nowIndex=GameDataMgr.Instance.sceneInfoList.Count-1;
             }
@@ -30,6 +32,7 @@ public class ChooseScenePanel : BasePanel
         });
         btnRight.onClick.AddListener(() =>
         {
+            Debug.Log("点击右键");
             ++nowIndex;
             if (nowIndex >= GameDataMgr.Instance.sceneInfoList.Count)
             {
@@ -42,6 +45,12 @@ public class ChooseScenePanel : BasePanel
             //隐藏当前面板
             UIManager.Instance.HidePanel<ChooseScenePanel>();
             //切换场景
+            AsyncOperation ao= SceneManager.LoadSceneAsync(nowSceneInfo.sceneName);
+            //进行关卡初始化
+            ao.completed += (obj) =>
+            {
+                GameLevelMgr.Instance.InitInfo(nowSceneInfo);
+            };
 
         });
         btnBack.onClick.AddListener(() =>

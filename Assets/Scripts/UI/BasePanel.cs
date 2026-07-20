@@ -41,7 +41,7 @@ public abstract class BasePanel : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         if (isShow && canvasGroup.alpha != 1)
         {
